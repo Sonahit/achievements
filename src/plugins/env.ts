@@ -6,9 +6,11 @@ export default fp(
   (fastify: FastifyInstance, _: any, done: (err?: Error | undefined) => void) => {
     const env = dotenv.config();
     fastify.decorate('env', env.parsed);
+    fastify.log.info('Registered env plugin');
     done();
   },
   {
-    fastify: 'env',
+    name: 'env',
+    fastify: '>=3.0',
   },
 );

@@ -13,10 +13,12 @@
   },
   "scripts": {
     "start": "ts-node -P ./tsconfig.json ./src/index.ts",
-    "build": "tsc -P ./tsconfig.json"
+    "build": "tsc -P ./tsconfig.json",
+    "knex": "knex --knexfile ./knexfile.ts"
   },
   "devDependencies": {
     "@types/node": "^14.14.16",
+    "@types/pg": "^7.14.7",
     "@types/require-all": "^3.0.1",
     "@types/ws": "^7.4.0",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
