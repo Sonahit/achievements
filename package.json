@@ -10,10 +10,11 @@
     "objection": "^2.2.3",
     "pg": "^8.5.1",
     "require-all": "^3.0.0",
+    "tsconfig-paths": "^3.9.0",
     "ws": "^7.4.1"
   },
   "scripts": {
-    "start": "ts-node -P ./tsconfig.json ./src/index.ts",
+    "start": "ts-node -r tsconfig-paths/register -P ./tsconfig.json ./src/index.ts",
     "build": "tsc -P ./tsconfig.json",
     "knex": "knex --knexfile ./knexfile.ts"
   },
