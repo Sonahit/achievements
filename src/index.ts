@@ -2,6 +2,7 @@ import Fastify from 'fastify';
 import modules from './modules';
 import db from './plugins/db';
 import env from './plugins/env';
+import reply from './plugins/reply';
 import routes from './routes';
 
 const fastify = Fastify({
@@ -11,12 +12,12 @@ const fastify = Fastify({
 
 fastify
   .register(env)
-  .register(db, {
-    db: process.env.DB_NAME || '',
-    password: process.env.DB_PASSWORD || '',
-    user: process.env.DB_USER || '',
-    port: +(process.env.DB_PORT || 5432),
-  })
+  .register(db)
   .register(modules)
   .register(routes)
+  .register(reply)
   .listen(process.env.PORT || 3000);
+const graceExit = () => {
+  fastify.knex.destroy();
+};
+process.on('exit', graceExit);

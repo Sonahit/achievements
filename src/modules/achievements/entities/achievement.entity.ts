@@ -2,8 +2,16 @@
 import { Entity } from '../../../shared/domain/Entity';
 
 export class Achievement extends Entity {
+  id!: number;
+
+  name!: string;
+
   static get tableName(): string {
     return 'achievements';
+  }
+
+  static get jsonSchema() {
+    return schema;
   }
 }
 

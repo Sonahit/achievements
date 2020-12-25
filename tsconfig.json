@@ -16,4 +16,8 @@
   },
   "exclude": ["node_modules"],
   "include": ["./knexfile.ts", "./src"],
+  "ts-node": {
+    "files": true,
+  },
+  "files": ["./src/augmentation.d.ts"]
 }

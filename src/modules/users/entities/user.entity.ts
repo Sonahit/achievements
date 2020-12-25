@@ -5,6 +5,10 @@ export class User extends Entity {
   static get tableName(): string {
     return 'users';
   }
+
+  static get jsonSchema() {
+    return schema;
+  }
 }
 
 export const schema = {

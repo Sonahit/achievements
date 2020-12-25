@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import { AchievementType } from '../../modules/achievements/entities/achievement.entity';
+import { Achievement, AchievementType } from '../../modules/achievements/entities/achievement.entity';
 import { getAchievementSchema } from './schemas';
 
 export default (fastify: FastifyInstance): FastifyInstance => {
@@ -11,10 +11,19 @@ export default (fastify: FastifyInstance): FastifyInstance => {
         {
           schema: getAchievementSchema,
         },
-        (req, rep) => {
-          rep.send({
-            name: 'HELLO_WORLD',
+        async () => {
+          const name = 'HELLOW_RWOLRDS';
+          const achievement = await Achievement.query().findOne({
+            name,
           });
+          if (!achievement) {
+            return (
+              await Achievement.query().insert({
+                name,
+              })
+            ).toJSON();
+          }
+          return achievement.toJSON();
         },
       );
       d();
