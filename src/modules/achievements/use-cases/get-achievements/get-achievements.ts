@@ -1,4 +1,4 @@
-import { Achievement, AchievementType } from '../entities/achievement.entity';
+import { Achievement, AchievementType } from '../../entities/achievement.entity';
 
 export const getAchievements = async (): Promise<AchievementType> => {
   const name = 'HELLOW_RWOLRDS';

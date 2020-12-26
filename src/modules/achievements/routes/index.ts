@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import { getAchievements } from '../use-cases/get-achievements';
+import { getAchievements } from '../use-cases/get-achievements/get-achievements';
 import { getAchievementSchema } from './schemas';
 
 export default (fastify: FastifyInstance): FastifyInstance => {
