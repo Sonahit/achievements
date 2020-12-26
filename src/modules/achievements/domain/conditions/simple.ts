@@ -1,8 +1,8 @@
-import { IAchievementContext } from '../interfaces/IAchievementContext';
+import { ConditionOptions } from '../condition.types';
 import { BaseCondition } from './base-condition';
 
-export class SimpleCondition extends BaseCondition {
-  canActive(ctx: IAchievementContext): boolean {
-    throw new Error('Method not implemented.');
+export class SimpleCondition extends BaseCondition<ConditionOptions['simple']> {
+  async canActive(): Promise<boolean> {
+    return true;
   }
 }

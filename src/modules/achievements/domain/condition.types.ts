@@ -13,8 +13,8 @@ export type ConditionConcreteTypes = {
 
 export type ConditionOptions = {
   simple: Record<string, any>;
-  ['count-based']: Record<string, any> & { count: number };
-  ['time-based']: Record<string, any> & { count: number; expiredAt: number };
+  ['count-based']: { count: number };
+  ['time-based']: { count: number; expiredAt: number };
 };
 
 export type ConditionConstructor = <T extends ConditionTypes>(
