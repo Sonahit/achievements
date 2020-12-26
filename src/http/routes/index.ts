@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import achievementRoutes from '@src/modules/achievements/routes/';
-import userRoutes from '@src/modules/users/routes/';
+import achievementRoutes from '@src/modules/achievements/http/routes';
+import userRoutes from '@src/modules/users/http/routes';
 import { FastifyInstance } from 'fastify';
 import fp from 'fastify-plugin';
 

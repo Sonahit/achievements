@@ -3,7 +3,7 @@ import { achievementRepository } from '../../repositories/index';
 
 export const getAchievement = async (): Promise<AchievementType> => {
   const name = 'HELLOW_RWOLRDS';
-  const achievement = await achievementRepository.query().findOne({
+  const achievement = await achievementRepository.findOne({
     name,
   });
   if (!achievement) {
