@@ -1,4 +1,5 @@
 import Fastify from 'fastify';
+import routes from './http/routes';
 import modules from './modules';
 import db from './plugins/db';
 import env from './plugins/env';
@@ -13,6 +14,7 @@ fastify
   .register(env)
   .register(db)
   .register(modules)
+  .register(routes)
   .register(reply)
   .listen(process.env.PORT || 3000);
 const graceExit = () => {
