@@ -4,6 +4,7 @@ import modules from './modules';
 import db from './plugins/db';
 import env from './plugins/env';
 import reply from './plugins/reply';
+import ws from './plugins/ws';
 import shared from './shared/modules';
 
 const fastify = Fastify({
@@ -14,6 +15,7 @@ const fastify = Fastify({
 fastify
   .register(env)
   .register(db)
+  .register(ws)
   .register(shared)
   .register(modules)
   .register(routes)
