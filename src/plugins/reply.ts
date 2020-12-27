@@ -8,7 +8,7 @@ export default fp(
       const data = {
         statusCode: rep.statusCode,
         error: rep.statusCode >= 400 ? httpError(rep.statusCode).message : '',
-        message: httpError(rep.statusCode).message,
+        message: rep.statusCode < 400 ? 'OK' : httpError(rep.statusCode).message,
       } as Record<string, any>;
 
       if (payload?.messags) {
