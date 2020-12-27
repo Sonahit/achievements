@@ -8,9 +8,6 @@ type Props = {
 export class CountBasedCondition extends BaseCondition<ConditionOptions['count-based']> {
   async canActive(ctx: IAchievementContext<Props>): Promise<boolean> {
     const { conditions } = ctx;
-    if (conditions.count >= this.state.get<number>('count')) {
-      return true;
-    }
-    return false;
+    return conditions.count >= this.state.get<number>('count');
   }
 }

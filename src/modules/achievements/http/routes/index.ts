@@ -1,4 +1,5 @@
 import { FastifyInstance } from 'fastify';
+import { GiveAchievementEvent } from '../../domain/events';
 import { getAchievements } from '../../use-cases/get-achievements/get-achievements';
 import { getAchievementSchema } from './schemas';
 
@@ -12,6 +13,7 @@ export default (fastify: FastifyInstance): FastifyInstance => {
           schema: getAchievementSchema,
         },
         async () => {
+          fastify.cqrs.eventBus.publish(new GiveAchievementEvent('' as any, '' as any));
           return await getAchievements();
         },
       );

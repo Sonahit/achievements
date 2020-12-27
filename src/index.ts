@@ -4,6 +4,7 @@ import modules from './modules';
 import db from './plugins/db';
 import env from './plugins/env';
 import reply from './plugins/reply';
+import shared from './shared/modules';
 
 const fastify = Fastify({
   logger: true,
@@ -13,6 +14,7 @@ const fastify = Fastify({
 fastify
   .register(env)
   .register(db)
+  .register(shared)
   .register(modules)
   .register(routes)
   .register(reply)

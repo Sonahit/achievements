@@ -5,6 +5,7 @@ export async function up(knex: Knex): Promise<void> {
   return await knex.schema.createTable(Achievement.tableName, (t) => {
     t.increments('id');
     t.string('name');
+    t.jsonb('state');
   });
 }
 
