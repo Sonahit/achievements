@@ -11,6 +11,6 @@ export class GiveAchievementHandler implements IEventHandler<GiveAchievementEven
   }
 
   handle(event: GiveAchievementEvent): void {
-    this.app.log.info(`Handled ${GiveAchievementEvent.name}`);
+    this.app.log.info(`Handled ${event.constructor.name}`);
   }
 }
