@@ -1,17 +1,13 @@
-import { Achievement, AchievementType } from '../../entities/achievement.entity';
+import httpError from 'http-errors';
+import { AchievementType } from '../../entities/achievement.entity';
 import { achievementRepository } from '../../repositories/index';
 
-export const getAchievement = async (): Promise<AchievementType> => {
-  const name = 'HELLOW_RWOLRDS';
+export const getAchievement = async (id: number): Promise<AchievementType> => {
   const achievement = await achievementRepository.findOne({
-    name,
+    id,
   });
   if (!achievement) {
-    return (
-      await Achievement.query().insert({
-        name,
-      })
-    ).toJSON();
+    throw new httpError[404]();
   }
   return achievement.toJSON();
 };

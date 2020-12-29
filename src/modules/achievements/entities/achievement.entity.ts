@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { State } from '@src/shared/domain/State';
+import { JSONSchema } from 'objection';
 import { Entity } from '../../../shared/domain/Entity';
 import { ConditionTypes } from '../domain/condition.types';
 import { createConditionFactory } from '../domain/factories/create-condition.factory';
@@ -12,7 +13,7 @@ export class Achievement extends Entity {
 
   type!: ConditionTypes;
 
-  state!: Record<string, any>;
+  state: Record<string, any> = {};
 
   static get tableName(): string {
     return 'achievements';
@@ -22,7 +23,7 @@ export class Achievement extends Entity {
     return schema;
   }
 
-  get condition(): IAchievementCondition {
+  get condition(): IAchievementCondition | undefined {
     return createConditionFactory(this.type, new State(this.state));
   }
 }
@@ -33,9 +34,9 @@ export type AchievementType = {
   name: string;
 };
 
-export const schema = {
+export const schema: JSONSchema = {
   $id: 'achievement',
-  required: ['name'],
+  required: ['name', 'type'],
   properties: {
     id: {
       type: 'number',
@@ -43,8 +44,17 @@ export const schema = {
     name: {
       type: 'string',
     },
+    type: {
+      type: 'string',
+    },
     state: {
       type: 'object',
+      properties: {
+        count: {
+          type: 'number',
+        },
+      },
+      default: {},
     },
   },
 };

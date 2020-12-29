@@ -1,3 +1,4 @@
+import 'tsconfig-paths/register';
 import dotenv from 'dotenv';
 import { Config } from 'knex';
 import { join } from 'path';

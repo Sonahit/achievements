@@ -2,5 +2,8 @@
     "watch": ["src"],
     "ext": "ts",
     "ignore": ["src/**/*.spec.ts"],
-    "exec": "yarn start"
+    "exec": "yarn start",
+    "events": {
+        "restart": "fuser -k 3000/tcp"
+    }
 }

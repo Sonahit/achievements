@@ -5,7 +5,7 @@ import httpError from 'http-errors';
 export default fp(
   (fastify: FastifyInstance, _: any, done: (err?: Error | undefined) => void) => {
     fastify.addHook('onSend', (_, rep, payload: any, next) => {
-      const data = {
+      let data = {
         statusCode: rep.statusCode,
         error: rep.statusCode >= 400 ? httpError(rep.statusCode).message : '',
         message: rep.statusCode < 400 ? 'OK' : httpError(rep.statusCode).message,
@@ -24,7 +24,11 @@ export default fp(
       }
 
       if (typeof payload === 'string') {
-        data.data = JSON.parse(payload);
+        if (rep.statusCode >= 400) {
+          data = JSON.parse(payload);
+        } else {
+          data.data = JSON.parse(payload);
+        }
       }
       next(null, JSON.stringify(data));
     });

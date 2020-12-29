@@ -10,6 +10,11 @@ import shared from './shared/modules';
 const fastify = Fastify({
   logger: true,
   ignoreTrailingSlash: true,
+  ajv: {
+    customOptions: {
+      allErrors: true,
+    },
+  },
 });
 
 fastify
