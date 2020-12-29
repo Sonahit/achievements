@@ -11,9 +11,7 @@ export class Achievement extends Entity {
 
   name!: string;
 
-  type!: ConditionTypes;
-
-  state: Record<string, any> = {};
+  state: Record<string, any> & { type: ConditionTypes } = { type: 'simple' };
 
   static get tableName(): string {
     return 'achievements';
@@ -24,7 +22,7 @@ export class Achievement extends Entity {
   }
 
   get condition(): IAchievementCondition | undefined {
-    return createConditionFactory(this.type, new State(this.state));
+    return createConditionFactory(this.state.type, new State(this.state));
   }
 }
 
@@ -36,7 +34,7 @@ export type AchievementType = {
 
 export const schema: JSONSchema = {
   $id: 'achievement',
-  required: ['name', 'type'],
+  required: ['name', 'state'],
   properties: {
     id: {
       type: 'number',
@@ -44,17 +42,20 @@ export const schema: JSONSchema = {
     name: {
       type: 'string',
     },
-    type: {
-      type: 'string',
-    },
     state: {
       type: 'object',
+      required: ['type'],
       properties: {
+        type: {
+          type: 'string',
+        },
         count: {
           type: 'number',
         },
       },
-      default: {},
+      default: {
+        type: 'simple',
+      },
     },
   },
 };

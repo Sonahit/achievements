@@ -5,7 +5,5 @@ export type AchievementDto = {
 
   name: string;
 
-  type: ConditionTypes;
-
-  state: Record<string, any>;
+  state: Record<string, any> & { type: ConditionTypes };
 };
