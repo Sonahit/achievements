@@ -3,7 +3,6 @@ import { getAchievements } from '../../use-cases/get-achievements/get-achievemen
 import { getAchievementSchema } from '../../use-cases/get-achievement/get-achievement.schema';
 import { getAchievementsSchema } from '../../use-cases/get-achievements/get-achievements.schema';
 import { getAchievement } from '../../use-cases/get-achievement';
-import { AchievementType } from '../../entities/achievement.entity';
 import { createAchievement } from '../../use-cases/create-achievement/create-achievement';
 import { createAchievementSchema } from '../../use-cases/create-achievement/create-achievement.schema';
 import { CreateAchievementDto } from '../../use-cases/create-achievement/create-achievement.dto';

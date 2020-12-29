@@ -1,4 +1,5 @@
 import { FastifySchema } from 'fastify';
+import { JSONSchema7 } from 'json-schema';
 
 export const getAchievementsSchema: FastifySchema = {
   response: {
@@ -7,6 +8,6 @@ export const getAchievementsSchema: FastifySchema = {
       items: {
         $ref: 'achievement#',
       },
-    },
+    } as JSONSchema7,
   },
 };

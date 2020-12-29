@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { State } from '@src/shared/domain/State';
-import { JSONSchema } from 'objection';
+import { JSONSchema7 } from 'json-schema';
 import { Entity } from '../../../shared/domain/Entity';
 import { ConditionTypes } from '../domain/condition.types';
 import { createConditionFactory } from '../domain/factories/create-condition.factory';
@@ -32,7 +32,7 @@ export type AchievementType = {
   name: string;
 };
 
-export const schema: JSONSchema = {
+export const schema: JSONSchema7 = {
   $id: 'achievement',
   required: ['name', 'state'],
   properties: {

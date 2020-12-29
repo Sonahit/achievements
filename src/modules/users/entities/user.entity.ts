@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Entity } from '../../../shared/domain/Entity';
+import { JSONSchema7 } from 'json-schema';
 
 export class User extends Entity {
   static get tableName(): string {
@@ -11,7 +12,7 @@ export class User extends Entity {
   }
 }
 
-export const schema = {
+export const schema: JSONSchema7 = {
   $id: 'user',
   required: ['name'],
   properties: {
