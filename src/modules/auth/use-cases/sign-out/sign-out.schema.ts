@@ -1,7 +1,7 @@
 import { FastifySchema } from 'fastify';
 import { JSONSchema7 } from 'json-schema';
 
-export const signUpSchema: FastifySchema = {
+export const signOutSchema: FastifySchema = {
   headers: {
     type: 'object',
     required: ['authorization'],

@@ -4,6 +4,7 @@ import httpError from 'http-errors';
 
 export default fp(
   (fastify: FastifyInstance, _: any, done: (err?: Error | undefined) => void) => {
+    fastify.log.info('Registered plugin reply');
     fastify.addHook('onSend', (_, rep, payload: any, next) => {
       let data = {
         statusCode: rep.statusCode,
@@ -35,7 +36,7 @@ export default fp(
     done();
   },
   {
-    name: 'env',
+    name: 'reply',
     fastify: '>=3.0',
   },
 );

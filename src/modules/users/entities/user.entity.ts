@@ -32,6 +32,9 @@ export const schema: JSONSchema7 = {
     name: {
       type: 'string',
     },
+    password: {
+      type: 'string',
+    },
     login: {
       type: 'string',
     },

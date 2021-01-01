@@ -1,7 +1,7 @@
 import { FastifySchema } from 'fastify';
 import { JSONSchema7 } from 'json-schema';
 
-export const signUpSchema: FastifySchema = {
+export const signInSchema: FastifySchema = {
   body: {
     required: ['login', 'password'],
     properties: {
@@ -16,14 +16,17 @@ export const signUpSchema: FastifySchema = {
     },
   } as JSONSchema7,
   response: {
-    type: 'object',
-    properties: {
-      token: {
-        type: 'string',
+    '2xx': {
+      type: 'object',
+      properties: {
+        token: {
+          type: 'string',
+        },
+        type: {
+          type: 'string',
+          enum: ['Basic', 'Bearer'],
+        },
       },
-      type: {
-        enum: ['Basic', 'Bearer'],
-      },
-    },
-  } as JSONSchema7,
+    } as JSONSchema7,
+  },
 };

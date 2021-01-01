@@ -1,15 +1,15 @@
-import { requireFiles } from '@src/shared/utils/fs';
 import { FastifyInstance } from 'fastify';
+import authPlugin from './plugins/auth';
 import fp from 'fastify-plugin';
-import { join } from 'path';
+import { hash } from './auth.utils';
 
 const authModule = (fastify: FastifyInstance, _: any, done: (err?: Error) => void) => {
+  fastify.register(authPlugin).decorate('hash', hash(fastify.env.SECRET_KEY));
   fastify.log.info('Registered auth module');
-  Object.values(requireFiles(join(__dirname, 'plugins'))).map((m) => fastify.register(m));
   done();
 };
 
 export default fp(authModule, {
-  name: 'users-module',
+  name: 'auth-module',
   fastify: '>=3.0',
 });

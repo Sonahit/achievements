@@ -12,59 +12,58 @@ import { User } from '@src/modules/users/entities/user.entity';
 import { giveAchievementsSchema } from '../../use-cases/give-achievements/give-achievements.schema';
 import { giveAchievements } from '../../use-cases/give-achievements';
 import { GiveAchievementDto } from '../../use-cases/give-achievements/give-achievements.dto';
+import fp from 'fastify-plugin';
 
-export default (fastify: FastifyInstance): FastifyInstance => {
+const achievementRoutes = (fastify: FastifyInstance, _: any, d: (err?: Error) => void) => {
   fastify.log.info('Registered achievement routes');
-  return fastify.register(
-    (f, _, d) => {
-      f.get(
-        '/',
-        {
-          schema: getAchievementsSchema,
-        },
-        async () => {
-          return await getAchievements();
-        },
-      )
-        .get(
-          '/me',
-          {
-            schema: getUserAchievementsSchema,
-          },
-          async (req) => {
-            return getUserAchievements((req as any).user as User);
-          },
-        )
-        .get<{ Params: { id: number } }>(
-          '/:id',
-          {
-            schema: getAchievementSchema,
-          },
-          async (req) => {
-            return await getAchievement(req.params.id);
-          },
-        )
-        .post<{ Body: CreateAchievementDto }>(
-          '/',
-          {
-            schema: createAchievementSchema,
-          },
-          async (req) => {
-            return await createAchievement(req.body);
-          },
-        )
-        .post<{ Body: GiveAchievementDto }>(
-          '/give',
-          {
-            schema: giveAchievementsSchema,
-          },
-          async (req) => {
-            const { user, achievements } = req.body;
-            return await giveAchievements(user, achievements);
-          },
-        );
-      d();
-    },
-    { prefix: 'achievements' },
-  );
+  fastify
+    .get(
+      '/achievements',
+      {
+        schema: getAchievementsSchema,
+      },
+      async () => {
+        return await getAchievements();
+      },
+    )
+    .get(
+      '/achievements/me',
+      {
+        schema: getUserAchievementsSchema,
+      },
+      async (req) => {
+        return getUserAchievements((req as any).user as User);
+      },
+    )
+    .get<{ Params: { id: number } }>(
+      '/achievements/:id',
+      {
+        schema: getAchievementSchema,
+      },
+      async (req) => {
+        return await getAchievement(req.params.id);
+      },
+    )
+    .post<{ Body: CreateAchievementDto }>(
+      '/achievements',
+      {
+        schema: createAchievementSchema,
+      },
+      async (req) => {
+        return await createAchievement(req.body);
+      },
+    )
+    .post<{ Body: GiveAchievementDto }>(
+      '/give',
+      {
+        schema: giveAchievementsSchema,
+      },
+      async (req) => {
+        const { user, achievements } = req.body;
+        return await giveAchievements(user, achievements);
+      },
+    );
+  d();
 };
+
+export default fp(achievementRoutes);

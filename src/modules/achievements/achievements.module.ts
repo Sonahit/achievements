@@ -7,7 +7,7 @@ import { schemas } from './entities';
 const achievementModule = (fastify: FastifyInstance, _: any, done: (err?: Error) => void) => {
   const handlers = [new RemoveAchievementHandler(fastify), new GiveAchievementHandler(fastify)];
   Object.values(schemas).forEach((v) => fastify.addSchema(v));
-  fastify.log.info('Registered acheivement module');
+  fastify.log.info('Registered achievement module');
   fastify.cqrs.service.register(...handlers);
   done();
 };
