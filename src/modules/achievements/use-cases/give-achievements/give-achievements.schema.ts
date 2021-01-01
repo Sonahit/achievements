@@ -18,7 +18,7 @@ export const giveAchievementsSchema: FastifySchema = {
       user: {
         type: 'number',
       },
-      achievemnts: {
+      achievements: {
         type: 'array',
         items: {
           type: 'number',

@@ -54,7 +54,7 @@ const achievementRoutes = (fastify: FastifyInstance, _: any, d: (err?: Error) =>
       },
     )
     .post<{ Body: GiveAchievementDto }>(
-      '/give',
+      '/achievements/give',
       {
         schema: giveAchievementsSchema,
       },
