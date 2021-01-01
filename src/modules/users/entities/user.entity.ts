@@ -3,6 +3,12 @@ import { Entity } from '../../../shared/domain/Entity';
 import { JSONSchema7 } from 'json-schema';
 
 export class User extends Entity {
+  id!: number;
+
+  name!: string;
+
+  token!: string | null;
+
   static get tableName(): string {
     return 'users';
   }
@@ -21,6 +27,16 @@ export const schema: JSONSchema7 = {
     },
     name: {
       type: 'string',
+    },
+    token: {
+      oneOf: [
+        {
+          type: 'string',
+        },
+        {
+          type: 'null',
+        },
+      ],
     },
   },
 };

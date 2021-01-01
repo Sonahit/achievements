@@ -1,5 +1,5 @@
 import { IAchievementContext } from './IAchievementContext';
 
 export interface IAchievementCondition {
-  canActive(user: IAchievementContext): Promise<boolean> | boolean;
+  canActive(ctx: IAchievementContext): Promise<boolean> | boolean;
 }
