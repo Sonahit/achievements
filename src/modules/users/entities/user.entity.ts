@@ -7,6 +7,10 @@ export class User extends Entity {
 
   name!: string;
 
+  login!: string;
+
+  password!: string;
+
   token!: string | null;
 
   static get tableName(): string {
@@ -20,12 +24,15 @@ export class User extends Entity {
 
 export const schema: JSONSchema7 = {
   $id: 'user',
-  required: ['name'],
+  required: ['name', 'login'],
   properties: {
     id: {
       type: 'number',
     },
     name: {
+      type: 'string',
+    },
+    login: {
       type: 'string',
     },
     token: {
